@@ -25,10 +25,14 @@ SRC_TESTS ?= $(shell find . -regextype egrep -type f \( -regex "./tests-$(HOMEWO
 CXX ?= g++
 CXX_FLAGS ?= -I $(HOMEWORK_LOCATION)
 
+CATCH2_URL ?= https://github.com/catchorg/Catch2/releases/download/v2.13.6/catch.hpp
 CATCH2_BIN ?= ./a.out
 CATCH2_FLAGS ?=
 
-tests-main.o: tests-main.cpp
+catch.hpp:
+	wget $(CATCH2_URL)
+
+tests-main.o: tests-main.cpp catch.hpp
 	$(CXX) $(CXX_FLAGS) -c tests-main.cpp -o $(CATCH2_BIN)
 
 clean:
