@@ -1,0 +1,71 @@
+#+PROPERTY: HEADER-ARGS :dir (symbol-value 'default-directory)
+
+* Introduction
+
+This repository contains unit tests for the homework assignments of the course CS2100 at UTEC.
+
+* Contributing
+
+Feel free to create a pull request if you
+
++ have tests that you consider useful. Thus, others students can also benefit from that. The more tests we have, the more bugs we can find in our implementations.
++ would like to improve anything in this repository.
+
+If you don't know how to use Catch2, then consider watching [[https://www.youtube.com/watch?v=LYKOqZCB6lQ][this]] 5-minute video that shows a basic introduction on this framework.
+
+* Quick Start Guide
+
+In order for =make= to know the location of the files and the name of the homework you want to test, you need to set environment variables as shown below.
+
+#+begin_src bash :prologue "exec 2>&1" :epilogue ":"
+HOMEWORK_LOCATION=../homeworks/bst HOMEWORK_NAME=bst make run
+#+end_src
+
+#+RESULTS:
+#+begin_example
+g++ -I ../homeworks/bst tests-main.o ./tests-bst.cpp
+./a.out 
+===============================================================================
+All tests passed (8 assertions in 2 test cases)
+
+#+end_example
+
+You can also pass custom flags to Catch2 (see the two examples shown below.)
+
+#+begin_src bash :prologue "exec 2>&1" :epilogue ":"
+HOMEWORK_LOCATION=../homeworks/bst HOMEWORK_NAME=bst CATCH2_FLAGS="-t" make run
+#+end_src
+
+#+RESULTS:
+#+begin_example
+g++ -I ../homeworks/bst tests-main.o ./tests-bst.cpp
+./a.out -t
+All available tags:
+   2  [BSTree]
+   1  [maxValue]
+   1  [minValue]
+3 tags
+
+make: *** [makefile:38: run] Error 3
+#+end_example
+
+#+begin_src bash :prologue "exec 2>&1" :epilogue ":"
+HOMEWORK_LOCATION=../homeworks/bst HOMEWORK_NAME=bst CATCH2_FLAGS="-l" make run
+#+end_src
+
+#+RESULTS:
+#+begin_example
+g++ -I ../homeworks/bst tests-main.o ./tests-bst.cpp
+./a.out -l
+All available test cases:
+  Getting the minimum value in a BST
+      [BSTree][minValue]
+  Getting the maximum value in a BST
+      [BSTree][maxValue]
+2 test cases
+
+make: *** [makefile:38: run] Error 2
+#+end_example
+
+You can find all the flags that Catch2 supports in the [[https://github.com/catchorg/Catch2/blob/devel/docs/command-line.md][official documenation]] of Catch2.
+
