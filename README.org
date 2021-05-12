@@ -1,4 +1,4 @@
-#+PROPERTY: HEADER-ARGS :dir (symbol-value 'default-directory)
+#+PROPERTY: HEADER-ARGS :dir (symbol-value 'default-directory) :exports both
 
 * Introduction
 
@@ -15,7 +15,9 @@ If you don't know how to use Catch2, then consider watching [[https://www.youtub
 
 * Quick Start Guide
 
-In order for =make= to know the location of the files and the name of the homework you want to test, you need to set environment variables as shown below.
+First of all, you need clone this repository.
+
+Having done that, you only need to execute =make=, but in order for =make= to know the location of the files and the name of the homework you want to test, you need to set environment variables as shown below.
 
 #+begin_src bash :prologue "exec 2>&1" :epilogue ":"
 HOMEWORK_LOCATION=../homeworks/bst HOMEWORK_NAME=bst make run
