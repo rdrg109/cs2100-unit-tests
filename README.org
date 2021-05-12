@@ -19,7 +19,7 @@ First of all, you need clone this repository.
 
 Having done that, you only need to execute =make=, but in order for =make= to know the location of the files and the name of the homework you want to test, you need to set environment variables as shown below.
 
-#+begin_src bash :prologue "exec 2>&1" :epilogue ":"
+#+begin_src bash :prologue "exec 2>&1" :epilogue ":" :exports both
 HOMEWORK_LOCATION=../homeworks/bst HOMEWORK_NAME=bst make run
 #+end_src
 
@@ -34,7 +34,7 @@ All tests passed (8 assertions in 2 test cases)
 
 You can also pass custom flags to Catch2 (see the two examples shown below.)
 
-#+begin_src bash :prologue "exec 2>&1" :epilogue ":"
+#+begin_src bash :prologue "exec 2>&1" :epilogue ":" :exports both
 HOMEWORK_LOCATION=../homeworks/bst HOMEWORK_NAME=bst CATCH2_FLAGS="-t" make run
 #+end_src
 
@@ -51,7 +51,7 @@ All available tags:
 make: *** [makefile:38: run] Error 3
 #+end_example
 
-#+begin_src bash :prologue "exec 2>&1" :epilogue ":"
+#+begin_src bash :prologue "exec 2>&1" :epilogue ":" :exports both
 HOMEWORK_LOCATION=../homeworks/bst HOMEWORK_NAME=bst CATCH2_FLAGS="-l" make run
 #+end_src
 
