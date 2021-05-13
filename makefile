@@ -23,7 +23,8 @@ endif
 SRC_TESTS ?= $(shell find . -regextype egrep -type f \( -regex "./tests-$(HOMEWORK_NAME)(-?.+)*\.cpp" -a ! -name 'tests-$.cpp' \))
 
 CXX ?= g++
-CXX_FLAGS ?= -I $(HOMEWORK_LOCATION)
+CXX_INCLUDE ?= -I $(HOMEWORK_LOCATION)
+CXX_FLAGS ?=
 
 CATCH2_URL ?= https://github.com/catchorg/Catch2/releases/download/v2.13.6/catch.hpp
 CATCH2_BIN ?= ./a.out
@@ -33,12 +34,13 @@ catch.hpp:
 	wget $(CATCH2_URL)
 
 tests-main.o: tests-main.cpp catch.hpp
-	$(CXX) $(CXX_FLAGS) -c tests-main.cpp -o $(CATCH2_BIN)
+	$(CXX) $(CXX_INCLUDE) $(CXX_FLAGS) -c tests-main.cpp -o $(CATCH2_BIN)
+
+build: tests-main.o
+	$(CXX) $(CXX_INCLUDE) $(CXX_FLAGS) tests-main.o $(SRC_TESTS)
+
+run: build
+	$(CATCH2_BIN) $(CATCH2_FLAGS)
 
 clean:
 	rm $(CATCH2_BIN)
-
-run: tests-main.o
-	$(CXX) $(CXX_FLAGS) tests-main.o $(SRC_TESTS)
-	$(CATCH2_BIN) $(CATCH2_FLAGS)
-
