@@ -74,15 +74,17 @@ TEST_CASE("Getting the maximum value in a BST", "[BSTree][maxValue]") {
 // Builds a string with a equal formatting to that from the methods
 // displayInOrder, displayPreOrder, displayPostOrder.
 
-std::string build_string_display(int items[], int size) {
+std::string build_string_display(std::vector<int>items) {
   std::string result = "";
-  std::for_each(items, items + size, [&](const int& item) {
+  std::for_each(begin(items), end(items), [&](const int& item) {
     result = result + std::to_string(item) + ", ";
   });
   return result;
 }
 
 TEST_CASE("Traversing the tree using the inorder variant", "[BSTree][displayInOrder]") {
+  using std::vector;
+  
   BSTree<int> items;
   auto insert = [&] (const int& item) { items.insert(item); };
   ostringstream oss;
@@ -113,58 +115,55 @@ TEST_CASE("Traversing the tree using the inorder variant", "[BSTree][displayInOr
 
     SECTION("3 elements") {
       int size = 3;
-      int to_insert[size] = {3, 3, 3};
-      int correct_order[size] = {3, 3, 3};
+      vector<int> to_insert = {3, 3, 3};
+      vector<int> correct_order = {3, 3, 3};
 
-      for_each(to_insert, to_insert + size, insert);
+      for_each(begin(to_insert), end(to_insert), insert);
       
       cout.rdbuf(oss.rdbuf());
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == build_string_display(correct_order, size));
+      REQUIRE(oss.str() == build_string_display(correct_order));
     }
 
     SECTION("4 elements") {
-      int size = 4;
-      int to_insert[size] = {6, 5, 4, 3};
-      int correct_order[size] = {3, 4, 5, 6};
+      vector<int> to_insert = {6, 5, 4, 3};
+      vector<int> correct_order = {3, 4, 5, 6};
 
-      for_each(to_insert, to_insert + size, insert);
+      for_each(begin(to_insert), end(to_insert), insert);
       
       cout.rdbuf(oss.rdbuf());
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == build_string_display(correct_order, size));
+      REQUIRE(oss.str() == build_string_display(correct_order));
     }
 
     SECTION("6 elements") {
-      int size = 6;
-      int to_insert[size] = {10, 6, 4, 3, 5, 8};
-      int correct_order[size] = {3, 4, 5, 6, 8, 10};
+      vector<int> to_insert = {10, 6, 4, 3, 5, 8};
+      vector<int> correct_order = {3, 4, 5, 6, 8, 10};
 
-      for_each(to_insert, to_insert + size, insert);
+      for_each(begin(to_insert), end(to_insert), insert);
       
       cout.rdbuf(oss.rdbuf());
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == build_string_display(correct_order, size));
+      REQUIRE(oss.str() == build_string_display(correct_order));
     }
 
     SECTION("9 elements") {
-      int size = 9;
-      int to_insert[size] = {8, 3, 1, 6, 4, 7, 10, 14, 13};
-      int correct_order[size] = {1, 3, 4, 6, 7, 8, 10, 13, 14};
-
-      for_each(to_insert, to_insert + size, insert);
-
+      vector<int> to_insert = {8, 3, 1, 6, 4, 7, 10, 14, 13};
+      vector<int> correct_order = {1, 3, 4, 6, 7, 8, 10, 13, 14};
+      
+      for_each(begin(to_insert), end(to_insert), insert);
+      
       cout.rdbuf(oss.rdbuf());
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == build_string_display(correct_order, size));
+      REQUIRE(oss.str() == build_string_display(correct_order));
     }
     
   }
