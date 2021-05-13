@@ -93,28 +93,32 @@ TEST_CASE("Traversing the tree using the inorder variant", "[BSTree][displayInOr
   SECTION("explicitly inserting") {
 
     SECTION("1 element") {
-      items.insert(10);
+      vector<int> to_insert = {10};
+      vector<int> inorder = {10};
 
+      for_each(begin(to_insert), end(to_insert), insert);
+      
       cout.rdbuf(oss.rdbuf());
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == "10, ");
+      REQUIRE(oss.str() == build_string_display(inorder));
     }
 
     SECTION("2 elements") {
-      items.insert(10);
-      items.insert(6);
+      vector<int> to_insert = {10, 6};
+      vector<int> inorder = {6, 10};
 
+      for_each(begin(to_insert), end(to_insert), insert);
+      
       cout.rdbuf(oss.rdbuf());
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == "6, 10, ");
+      REQUIRE(oss.str() == build_string_display(inorder));
     }
 
     SECTION("3 elements") {
-      int size = 3;
       vector<int> to_insert = {3, 3, 3};
       vector<int> inorder = {3, 3, 3};
 
