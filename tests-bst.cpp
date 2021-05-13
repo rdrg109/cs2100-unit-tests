@@ -116,7 +116,7 @@ TEST_CASE("Traversing the tree using the inorder variant", "[BSTree][displayInOr
     SECTION("3 elements") {
       int size = 3;
       vector<int> to_insert = {3, 3, 3};
-      vector<int> correct_order = {3, 3, 3};
+      vector<int> inorder = {3, 3, 3};
 
       for_each(begin(to_insert), end(to_insert), insert);
       
@@ -124,12 +124,12 @@ TEST_CASE("Traversing the tree using the inorder variant", "[BSTree][displayInOr
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == build_string_display(correct_order));
+      REQUIRE(oss.str() == build_string_display(inorder));
     }
 
     SECTION("4 elements") {
       vector<int> to_insert = {6, 5, 4, 3};
-      vector<int> correct_order = {3, 4, 5, 6};
+      vector<int> inorder = {3, 4, 5, 6};
 
       for_each(begin(to_insert), end(to_insert), insert);
       
@@ -137,12 +137,12 @@ TEST_CASE("Traversing the tree using the inorder variant", "[BSTree][displayInOr
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == build_string_display(correct_order));
+      REQUIRE(oss.str() == build_string_display(inorder));
     }
 
     SECTION("6 elements") {
       vector<int> to_insert = {10, 6, 4, 3, 5, 8};
-      vector<int> correct_order = {3, 4, 5, 6, 8, 10};
+      vector<int> inorder = {3, 4, 5, 6, 8, 10};
 
       for_each(begin(to_insert), end(to_insert), insert);
       
@@ -150,12 +150,12 @@ TEST_CASE("Traversing the tree using the inorder variant", "[BSTree][displayInOr
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == build_string_display(correct_order));
+      REQUIRE(oss.str() == build_string_display(inorder));
     }
 
     SECTION("9 elements") {
       vector<int> to_insert = {8, 3, 1, 6, 4, 7, 10, 14, 13};
-      vector<int> correct_order = {1, 3, 4, 6, 7, 8, 10, 13, 14};
+      vector<int> inorder = {1, 3, 4, 6, 7, 8, 10, 13, 14};
       
       for_each(begin(to_insert), end(to_insert), insert);
       
@@ -163,7 +163,7 @@ TEST_CASE("Traversing the tree using the inorder variant", "[BSTree][displayInOr
       items.displayInOrder();
       cout.rdbuf(p_cout_streambuf);
 
-      REQUIRE(oss.str() == build_string_display(correct_order));
+      REQUIRE(oss.str() == build_string_display(inorder));
     }
     
   }
